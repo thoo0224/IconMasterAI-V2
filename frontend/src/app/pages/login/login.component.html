@@ -1,0 +1,78 @@
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <!-- Alerts -->
+        <app-alert *ngIf="errorAlertMessage" title="Error!" [message]="errorAlertMessage"></app-alert>
+
+        <!-- Header -->
+        <div>
+            <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                alt="Your Company">
+            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Login To Your Account
+            </h2>
+        </div>
+
+        <div class="mt-10">
+            <form class="space-y-6" action="#" method="POST" (submit)="login()" [formGroup]="loginForm">
+                <!-- Email -->
+                <div class="text-left">
+                    <label class="block text-sm font-medium leading-6 text-gray-300">Email
+                        address</label>
+                    <div class="mt-2">
+                        <input name="email" type="email" autocomplete="email" formControlName="email"
+                            class="mt-4 block w-full px-4 py-2 leading-5 text-white placeholder-gray-500 bg-gray-900 border border-transparent rounded-md ring-1 ring-white focus:outline-none focus:ring focus:ring-offset-0 focus:ring-indigo-500">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <div class="flex items-center justify-between">
+                        <label class="block text-sm font-medium leading-6 text-gray-300">Password</label>
+                        <div class="text-sm">
+                            <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <input id="password" name="password" type="password" autocomplete="current-password"
+                            formControlName="password"
+                            class="mt-4 block w-full px-4 py-2 leading-5 text-white placeholder-gray-500 bg-gray-900 border border-transparent rounded-md ring-1 ring-white focus:outline-none focus:ring focus:ring-offset-0 focus:ring-indigo-500">
+                    </div>
+                </div>
+
+                <!-- Validations -->
+                <div class="text-red-500 text-left">
+                    <!-- Email Validations -->
+                    <div *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)">
+                        <div *ngIf="emailControl.errors['required']">
+                            Email is required
+                        </div>
+                        <div *ngIf="emailControl.errors['email']">
+                            Email is invalid
+                        </div>
+                    </div>
+
+                    <!-- Password Validations -->
+                    <div *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)">
+                        <div *ngIf="passwordControl.errors['required']">
+                            Password is required
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-y-2">
+                    <!-- Login -->
+                    <button [disabled]="loginForm.invalid" type="submit"
+                        class="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign
+                        in</button>
+
+                    <div class="flex justify-between font-semibold text-sm text-indigo-600">
+                        <a class="text-white">OR</a>
+                        <a class="hover:text-indigo-500" routerLink="/register">Don't have an account?</a>
+                    </div>
+
+                    <!-- Google Login -->
+                    <app-google-login-button></app-google-login-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

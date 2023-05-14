@@ -1,0 +1,85 @@
+<div class="mx-auto max-w-sm sm:max-w-2xl">
+    <h1 class="text-5xl font-bold decoration-4">Generate your icon</h1>
+    <p class="text-lg text-gray-200 pt-1">Create AI-powered icons easily with our icon generator. No more tedious design
+        work, just input your description and let us do the rest.</p>
+</div>
+
+<div class="flex flex-col gap-14 mx-auto max-w-sm sm:max-w-2xl pt-14">
+    <!-- Prompt -->
+    <div>
+        <h2 class="text-2xl font-bold decoration-4 text-left text-gray-100">1. Prompt</h2>
+
+        <p class="text-sm text-gray-400 text-left">Be as detailed as possible to generate the best icons.</p>
+
+        <input type="text" name="prompt" [(ngModel)]="prompt"
+            class="mt-2 block w-full px-4 py-2 leading-5 text-white placeholder-gray-500 bg-gray-900 border border-transparent rounded-md ring-1 ring-white focus:outline-none focus:ring focus:ring-offset-0 focus:ring-primary"
+            placeholder="Rocket on a dark background">
+
+        <div class="pt-6">
+            <h2 class="text-xl font-bold decoration-4 text-left text-gray-100">Prompt Enhancer</h2>
+            <p class="text-sm text-gray-400 text-left">
+                Prompt Enhancer is a feature that uses GPT to create a more detailed prompt based on the user's input.
+                <span class="text-primary-light cursor-pointer">Show
+                    Example</span> (Beta)
+            </p>
+
+            <div class="flex pt-3">
+                <label class="relative inline-flex items-start cursor-pointer">
+                    <input type="checkbox" [(ngModel)]="promptEnhancerEnabled" class="sr-only peer">
+                    <div
+                        class="w-11 h-6 peer-focus:outline-none rounded-full peer bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary">
+                    </div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{promptEnhancerEnabled ?
+                        "Enabled" : "Disabled"}}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Primary Color -->
+    <div>
+        <h2 class="text-2xl font-bold decoration-4 text-left text-gray-100">2. Select a primary color</h2>
+
+        <div class="flex flex-wrap pt-4 gap-4">
+            <div *ngFor="let color of primaryColors">
+                <input [ngClass]="
+                    {'shadow-lg shadow-primary ring-primary ring-2': color == selectedPrimaryColor,
+                    'opacity-70': color != selectedPrimaryColor}"
+                    class="cursor-pointer h-20 w-20 color-radio appearance-none rounded-lg {{color}} hover:opacity-100"
+                    type="radio" name="color" (click)="selectedPrimaryColor = color">
+            </div>
+        </div>
+    </div>
+
+    <!-- Style -->
+    <div>
+        <h2 class="text-2xl font-bold decoration-4 text-left text-gray-100">3. Select a style for your icon</h2>
+
+        <div class="flex flex-wrap pt-4 gap-4">
+            <div *ngFor="let style of styles">
+                <img src="../../../assets/img/styles/{{style.name | lowercase}}.png" [ngClass]="
+                    {'shadow-lg shadow-primary ring-primary ring-2': style == selectedStyle,
+                    'opacity-70': style != selectedStyle}"
+                    class="cursor-pointer w-24 h24color-radio appearance-none rounded-lg hover:opacity-100" type="radio"
+                    name="color" (click)="selectedStyle = style">
+                <p class="text-sm text-gray-300 pt-1">{{style.label}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h2 class="text-2xl font-bold decoration-4 text-left text-gray-100">4. How many images do you want to generate?
+        </h2>
+
+        <!-- <p class="text-sm text-gray-400 text-left">NOTE: Every image generated costs 1 credit.
+            <span *ngIf="user$ | async as user">({{user.credits}} left)</span>
+        </p> -->
+
+        <input pattern="[0-9]{1}" type="number" type="text" name="prompt"
+            class="mt-4 block w-full px-4 py-2 leading-5 text-white placeholder-gray-500 bg-gray-900 border border-transparent rounded-md ring-1 ring-white focus:outline-none focus:ring focus:ring-offset-0 focus:ring-primary"
+            placeholder="1-10" [(ngModel)]="imagesToGenerate">
+    </div>
+
+    <button
+        class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-">Generate</button>
+</div>
