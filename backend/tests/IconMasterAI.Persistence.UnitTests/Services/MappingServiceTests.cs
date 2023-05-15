@@ -20,7 +20,7 @@ public class MappingServiceTests
     }
 
     [Fact]
-    public void Handle_ShouldReturnCorrectDto()
+    public void MapToDto_ShouldReturnCorrectDto()
     {
         // Act
         var user = User.Create(
