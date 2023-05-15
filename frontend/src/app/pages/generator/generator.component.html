@@ -16,6 +16,7 @@
             placeholder="Rocket on a dark background">
 
         <div class="pt-6">
+            <!-- TODO -->
             <h2 class="text-xl font-bold decoration-4 text-left text-gray-100">Prompt Enhancer</h2>
             <p class="text-sm text-gray-400 text-left">
                 Prompt Enhancer is a feature that uses GPT to create a more detailed prompt based on the user's input.
@@ -80,6 +81,6 @@
             placeholder="1-10" [(ngModel)]="imagesToGenerate">
     </div>
 
-    <button
+    <button (click)="generate()"
         class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-">Generate</button>
 </div>

@@ -4,7 +4,7 @@ import { EMPTY, Observable, catchError, tap } from 'rxjs';
 
 import { PasswordMaxLength, PasswordMinLength, passwordValidator } from 'src/app/core/validators/password.validator';
 import { LoadingOverlayService } from 'src/app/core/services/loading-overlay.service';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/core/services/app/auth.service';
 import { environment } from 'src/environments/environment';
 import { ErrorModalService } from 'src/app/core/services/error-modal.service';
 

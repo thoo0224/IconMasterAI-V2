@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { EMPTY, Observable, catchError, tap } from 'rxjs';
 
 import { LoadingOverlayService } from 'src/app/core/services/loading-overlay.service';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/core/services/app/auth.service';
 import { LoginResponse, ProblemDetails } from 'src/app/core/interfaces/responses';
 
 @Component({

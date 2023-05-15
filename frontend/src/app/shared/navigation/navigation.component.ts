@@ -2,7 +2,7 @@ import { Component, Signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from 'src/app/core/interfaces/user';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/core/services/app/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({

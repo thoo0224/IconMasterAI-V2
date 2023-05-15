@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { LoginResponse } from '../interfaces/responses';
-import { Param, httpParamsOf } from '../interfaces/params';
-import { TokenService } from './token.service';
+import { LoginResponse } from '../../interfaces/responses';
+import { Param, httpParamsOf } from '../../interfaces/params';
+import { TokenService } from '../token.service';
 
 @Injectable({
   providedIn: 'root'
