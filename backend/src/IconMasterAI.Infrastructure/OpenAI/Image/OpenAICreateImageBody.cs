@@ -5,8 +5,8 @@ namespace IconMasterAI.Infrastructure.OpenAI.Image;
 internal sealed class OpenAICreateImageBody
 {
     public const string ImageSize256 = "256x256";
-    public const string ImageSize512 = "256x256";
-    public const string ImageSize1024 = "256x256";
+    public const string ImageSize512 = "512x512";
+    public const string ImageSize1024 = "1024x1024";
 
     public const string ResponseFormatUrl = "url";
     public const string ResponseFormatBase64 = "b64_json";
