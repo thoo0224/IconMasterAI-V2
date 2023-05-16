@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
 import { httpParamsOf } from '../../interfaces/params';
-import { GeneratorResponse } from '../../interfaces/generator';
+import { GeneratorResponse } from '../../interfaces/responses';
 
 @Injectable({
   providedIn: 'root'

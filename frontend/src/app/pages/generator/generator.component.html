@@ -78,9 +78,44 @@
 
         <input pattern="[0-9]{1}" type="number" type="text" name="prompt"
             class="mt-4 block w-full px-4 py-2 leading-5 text-white placeholder-gray-500 bg-gray-900 border border-transparent rounded-md ring-1 ring-white focus:outline-none focus:ring focus:ring-offset-0 focus:ring-primary"
-            placeholder="1-10" [(ngModel)]="imagesToGenerate">
+            placeholder="1-10" [(ngModel)]="numImages">
     </div>
 
     <button (click)="generate()"
         class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-">Generate</button>
+</div>
+
+<div *ngIf="resultIcons && resultIcons.length > 0;">
+    <div class="fixed inset-0 z-50 flex items-center justify-center">
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <div class="z-49 rounded-lg shadow-lg max-w-xl">
+            <div role="alert" class="container mx-auto w-11/12 max-w-3xl">
+                <div class="relative py-8 px-8 sm:px-16 bg-gray-800 border-gray-700 shadow-md rounded border">
+                    <div class="pt-5">
+                        <div [ngClass]="{
+                            'grid-cols-1': resultIcons.length == 1, 
+                            'grid-cols-2': resultIcons.length >= 2}" class="grid gap-4">
+                            <ng-container *ngFor="let icon of resultIcons">
+                                <div class="rounded-lg overflow-hidden">
+                                    <img class="w-40 sm:w-60" src="{{icon.url}}" alt="Icon Image">
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-500 transition duration-150 ease-in-out"
+                        (click)="closeResultModal()">
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close"
+                            class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24"
+                            stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
