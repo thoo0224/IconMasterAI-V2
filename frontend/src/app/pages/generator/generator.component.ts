@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { EMPTY, catchError, tap } from 'rxjs';
 
 import { Icon, IconStyle } from 'src/app/core/interfaces/icon';
+import { ProblemDetails } from 'src/app/core/interfaces/responses';
 import { GeneratorService } from 'src/app/core/services/app/generator.service';
 import { ErrorModalService } from 'src/app/core/services/error-modal.service';
 import { LoadingOverlayService } from 'src/app/core/services/loading-overlay.service';
@@ -62,7 +63,12 @@ export class GeneratorComponent {
         }),
         catchError(err => {
           const error: HttpErrorResponse = err;
-          this.errorModalService.open(error.error.detail ?? "Please try again later.");
+          const problem: ProblemDetails = error.error;
+          let message = problem.type == "ValidationError"
+            ? error.error.errors[0].message
+            : problem.detail;
+
+          this.errorModalService.open(message ?? "Please try again later.");
           return EMPTY;
         })
       )).subscribe();
