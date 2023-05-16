@@ -26,7 +26,7 @@ internal sealed class AuthenticationService : IAuthenticationService
 
     public async Task<AuthenticationResult> AuthenticateLocalAsync(string email, string password)
     {
-        var user = await _userRepository.FindUserByEmail(email);
+        var user = await _userRepository.FindUserByEmailAsync(email);
         if (user == null)
         {
             return AuthenticationResult.Failure(DomainErrors.Users.InvalidEmailOrPassword);
@@ -58,7 +58,7 @@ internal sealed class AuthenticationService : IAuthenticationService
             return AuthenticationResult.Failure(DomainErrors.Users.GoogleLoginFailed);
         }
 
-        var user = await _userRepository.FindUserByEmail(payload.Email);
+        var user = await _userRepository.FindUserByEmailAsync(payload.Email);
         if (user == null)
         {
             user = User.Create(

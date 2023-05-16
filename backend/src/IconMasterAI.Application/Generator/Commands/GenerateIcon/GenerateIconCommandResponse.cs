@@ -1,3 +1,6 @@
-﻿namespace IconMasterAI.Application.Generator.Commands.GenerateIcon;
+﻿using IconMasterAI.Core.Entities;
 
-public sealed record GenerateIconCommandResponse(string Url);
+namespace IconMasterAI.Application.Generator.Commands.GenerateIcon;
+
+public sealed record GenerateIconCommandResponse(
+    Icon[] Icons);

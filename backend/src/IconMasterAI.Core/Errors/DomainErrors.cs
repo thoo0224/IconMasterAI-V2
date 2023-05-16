@@ -30,4 +30,11 @@ public static class DomainErrors
             "User.NotFound",
             "User was not found.");
     }
+
+    public static class Generator
+    {
+        public static readonly Error SomethingWentWrong = new(
+            "Generator.SomethingWentWrong",
+            "Something went wrong.");
+    }
 }

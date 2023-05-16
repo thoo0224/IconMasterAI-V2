@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
-
+using IconMasterAI.Core.Results.Validation;
 using IconMasterAI.Core.Shared;
-using IconMasterAI.Core.Shared.Validation;
 
 using MediatR;
 

@@ -1,4 +1,6 @@
-﻿namespace IconMasterAI.Infrastructure.OpenAI.Image;
+﻿using System.Text.Json.Serialization;
+
+namespace IconMasterAI.Infrastructure.OpenAI.Image;
 
 internal sealed class OpenAICreateImageResponse
 {
@@ -7,6 +9,9 @@ internal sealed class OpenAICreateImageResponse
 
     public class Image
     {
-        public string Url { get; set; }
+        public string? Url { get; set; }
+
+        [JsonPropertyName("b64_json")]
+        public string? Base64 { get; set; }
     }
 }

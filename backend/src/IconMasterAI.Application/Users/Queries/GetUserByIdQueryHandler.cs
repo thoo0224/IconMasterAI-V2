@@ -22,7 +22,7 @@ internal sealed class GetUserByIdQueryHandler
 
     public async Task<Result<UserDto>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.FindUserById(request.Id).ConfigureAwait(false);
+        var user = await _userRepository.FindUserByIdAsync(request.Id).ConfigureAwait(false);
         if (user == null)
         {
             return Result.Failure<UserDto>(DomainErrors.Users.UserNotFound);

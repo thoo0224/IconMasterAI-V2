@@ -3,8 +3,8 @@
 using FluentValidation;
 
 using IconMasterAI.Application.Behaviors;
+using IconMasterAI.Core.Results.Validation;
 using IconMasterAI.Core.Shared;
-using IconMasterAI.Core.Shared.Validation;
 
 using MediatR;
 

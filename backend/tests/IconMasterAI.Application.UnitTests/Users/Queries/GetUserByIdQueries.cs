@@ -32,7 +32,7 @@ public class GetUserByIdQueries
             _mappingServiceMock.Object);
 
         _userRepositoryMock
-            .Setup(x => x.FindUserById(It.IsAny<string>()))
+            .Setup(x => x.FindUserByIdAsync(It.IsAny<string>()))
             .ReturnsAsync((User?)null);
 
         // Arrange
@@ -66,7 +66,7 @@ public class GetUserByIdQueries
             _mappingServiceMock.Object);
 
         _userRepositoryMock
-            .Setup(x => x.FindUserById(It.IsAny<string>()))
+            .Setup(x => x.FindUserByIdAsync(It.IsAny<string>()))
             .ReturnsAsync(user);
 
         _mappingServiceMock

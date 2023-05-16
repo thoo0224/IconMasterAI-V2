@@ -1,4 +1,6 @@
-﻿namespace IconMasterAI.Core.Shared.Validation;
+﻿using IconMasterAI.Core.Shared;
+
+namespace IconMasterAI.Core.Results.Validation;
 
 public sealed class ValidationResult : Result, IValidationResult
 {

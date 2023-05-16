@@ -1,4 +1,9 @@
-﻿using IconMasterAI.Core.Repositories;
+﻿using Amazon;
+using Amazon.Extensions.NETCore.Setup;
+using Amazon.Runtime;
+using Amazon.S3;
+
+using IconMasterAI.Core.Repositories;
 using IconMasterAI.Core.Services;
 using IconMasterAI.Core.Services.Security;
 using IconMasterAI.Persistence.Entities;
@@ -24,6 +29,20 @@ public static class DependencyInjection
 #endif
         });
 
+        services.AddAWSService<IAmazonS3>();
+        services.AddDefaultAWSOptions(new AWSOptions
+        {
+            DefaultClientConfig =
+            {
+                ServiceURL = configuration["Aws:ServiceUrl"]
+            },
+
+            Region = RegionEndpoint.EUCentral1,
+            Credentials = new BasicAWSCredentials(
+                configuration["Aws:AccessKey"],
+                configuration["Aws:SecretAccessKey"])
+        });
+
         services.AddIdentityCore<ApplicationUser>(options =>
             {
                 options.Password.RequiredLength = 8;
@@ -33,8 +52,11 @@ public static class DependencyInjection
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddSignInManager<SignInManager<ApplicationUser>>();
 
+        services.AddScoped<IFileStorageService, FileStorageService>();
         services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<IMappingService, MappingService>();
+
+        services.AddScoped<IIconRepository, IconRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

@@ -33,7 +33,7 @@ public class AuthenticationServiceTests
             _jwtServiceMock.Object);
 
         _userRepositoryMock
-            .Setup(x => x.FindUserByEmail("email@test.com"))
+            .Setup(x => x.FindUserByEmailAsync("email@test.com"))
             .ReturnsAsync((User?)null);
 
         // Arrange
@@ -54,7 +54,7 @@ public class AuthenticationServiceTests
             _jwtServiceMock.Object);
 
         _userRepositoryMock
-            .Setup(x => x.FindUserByEmail("email@test.com"))
+            .Setup(x => x.FindUserByEmailAsync("email@test.com"))
             .ReturnsAsync(User.Create("username", "email@test.com"));
 
         _identityServiceMock
@@ -79,7 +79,7 @@ public class AuthenticationServiceTests
             _jwtServiceMock.Object);
 
         _userRepositoryMock
-            .Setup(x => x.FindUserByEmail("email@test.com"))
+            .Setup(x => x.FindUserByEmailAsync("email@test.com"))
             .ReturnsAsync(User.Create("username", "email@test.com"));
 
         _identityServiceMock

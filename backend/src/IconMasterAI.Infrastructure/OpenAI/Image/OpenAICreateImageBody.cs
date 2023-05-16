@@ -8,6 +8,9 @@ internal sealed class OpenAICreateImageBody
     public const string ImageSize512 = "256x256";
     public const string ImageSize1024 = "256x256";
 
+    public const string ResponseFormatUrl = "url";
+    public const string ResponseFormatBase64 = "b64_json";
+
     public required string Prompt { get; set; }
 
     [JsonPropertyName("n")]
@@ -15,8 +18,7 @@ internal sealed class OpenAICreateImageBody
 
     public string Size { get; set; } = ImageSize1024;
 
-    [JsonPropertyName("response_format")]
-    public string? ResponseFormat { get; set; }
+    public string ResponseFormat { get; set; } = ResponseFormatBase64;
 
     public string? User { get; set; }
 }

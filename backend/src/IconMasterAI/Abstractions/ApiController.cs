@@ -2,8 +2,8 @@
 
 using IconMasterAI.Core.Entities;
 using IconMasterAI.Core.Repositories;
+using IconMasterAI.Core.Results.Validation;
 using IconMasterAI.Core.Shared;
-using IconMasterAI.Core.Shared.Validation;
 
 using MediatR;
 
@@ -61,7 +61,7 @@ public abstract class ApiController : ControllerBase
         }
 
         var userRepository = HttpContext.RequestServices.GetRequiredService<IUserRepository>();
-        var user = await userRepository.FindUserById(userId)
+        var user = await userRepository.FindUserByIdAsync(userId)
             .ConfigureAwait(false);
 
         return user;

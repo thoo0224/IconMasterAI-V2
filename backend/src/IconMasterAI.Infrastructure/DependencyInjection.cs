@@ -1,6 +1,8 @@
 ﻿using System.Text;
-
+using IconMasterAI.Core.Services;
+using IconMasterAI.Core.Services.Icon;
 using IconMasterAI.Core.Services.Security;
+using IconMasterAI.Infrastructure.Services;
 using IconMasterAI.Infrastructure.Services.Security;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -50,6 +52,9 @@ public static class DependencyInjection
 
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
+
+        services.AddScoped<IImageGenerationService, OpenAIImageGenerationService>();
+        services.AddScoped<IIconGenerationService, IconGenerationService>();
 
         return services;
     }

@@ -42,7 +42,7 @@ internal sealed class UserRepository : IUserRepository
                 .ToArray());
     }
 
-    public async Task<User?> FindUserByEmail(string email)
+    public async Task<User?> FindUserByEmailAsync(string email)
     {
         var dbUser = await FindUserAsync(u => u.Email == email)
             .ConfigureAwait(false);
@@ -53,7 +53,7 @@ internal sealed class UserRepository : IUserRepository
         return  _mapper.Map<User>(dbUser);
     }
 
-    public async Task<User?> FindUserById(string id)
+    public async Task<User?> FindUserByIdAsync(string id)
     {
         var dbUser = await FindUserAsync(u => u.Id == id)
             .ConfigureAwait(false);
