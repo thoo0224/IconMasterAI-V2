@@ -1,6 +1,6 @@
 ﻿using IconMasterAI.Application.Abstractions.Messaging;
 
-namespace IconMasterAI.Application.Generator.Commands.GenerateIcon;
+namespace IconMasterAI.Application.Icons.Commands.GenerateIcon;
 
 public sealed record GenerateIconCommand(
     string Prompt,

@@ -3,7 +3,7 @@ using IconMasterAI.Core.Models.Inputs;
 using IconMasterAI.Core.Services.Icon;
 using IconMasterAI.Core.Shared;
 
-namespace IconMasterAI.Application.Generator.Commands.GenerateIcon;
+namespace IconMasterAI.Application.Icons.Commands.GenerateIcon;
 
 public class GenerateIconCommandHandler
     : ICommandHandler<GenerateIconCommand, GenerateIconCommandResponse>

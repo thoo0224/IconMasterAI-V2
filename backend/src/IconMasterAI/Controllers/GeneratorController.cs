@@ -1,6 +1,5 @@
 ﻿using IconMasterAI.Abstractions;
-using IconMasterAI.Application.Generator.Commands.GenerateIcon;
-
+using IconMasterAI.Application.Icons.Commands.GenerateIcon;
 using MediatR;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
