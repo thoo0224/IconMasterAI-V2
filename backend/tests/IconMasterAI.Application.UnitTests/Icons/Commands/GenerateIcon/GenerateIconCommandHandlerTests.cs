@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
+
 using IconMasterAI.Application.Icons.Commands.GenerateIcon;
 using IconMasterAI.Core.Entities;
 using IconMasterAI.Core.Errors;
@@ -12,39 +8,10 @@ using IconMasterAI.Core.Models.Results;
 using IconMasterAI.Core.Repositories;
 using IconMasterAI.Core.Services.Icon;
 using IconMasterAI.Core.Services.Security;
-using IconMasterAI.Core.Shared;
+
 using Moq;
 
 namespace IconMasterAI.Application.UnitTests.Icons.Commands.GenerateIcon;
-
-/*
- *     public async Task<Result<GenerateIconCommandResponse>> Handle(GenerateIconCommand request, CancellationToken ct)
-    {
-        var user = await _userAccessor.GetUserAsync(ct).ConfigureAwait(false);
-        if (user == null)
-        {
-            return Result.Failure<GenerateIconCommandResponse>(
-                DomainErrors.Global.Unauthorized);
-        }
-
-        if (!await _userRepository.HasEnoughCreditsAsync(user, request.NumImages, ct))
-        {
-            return Result.Failure<GenerateIconCommandResponse>(
-                DomainErrors.Generator.NotEnoughCredits);
-        }
-
-        var input = new IconGenerationInput(
-            request.Prompt,
-            request.Color,
-            request.Style,
-            request.NumImages);
-
-        var result = await _iconGenerationService.GenerateIconAsync(user, input, ct).ConfigureAwait(false);
-        var response = new GenerateIconCommandResponse(result.Icons);
-
-        return Result.Success(response);
-    }
- */
 
 public class GenerateIconCommandHandlerTests
 {
