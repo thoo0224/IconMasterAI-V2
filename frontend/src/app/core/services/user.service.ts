@@ -22,4 +22,8 @@ export class UserService {
   setUser(user: User) {
     this.user.set(user);
   }
+
+  removeCredits(num: number) {
+    this.user.mutate(u => u.credits -= num);
+  }
 }

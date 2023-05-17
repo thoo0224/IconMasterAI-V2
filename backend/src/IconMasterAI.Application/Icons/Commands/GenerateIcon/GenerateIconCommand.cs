@@ -5,4 +5,5 @@ namespace IconMasterAI.Application.Icons.Commands.GenerateIcon;
 public sealed record GenerateIconCommand(
     string Prompt,
     string Color,
-    string Style) : ICommand<GenerateIconCommandResponse>;
+    string Style,
+    int NumImages) : ICommand<GenerateIconCommandResponse>;

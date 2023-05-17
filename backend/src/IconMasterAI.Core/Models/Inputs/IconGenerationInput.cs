@@ -3,4 +3,5 @@
 public sealed record IconGenerationInput(
     string Prompt,
     string Color,
-    string Style);
+    string Style,
+    int NumImages);

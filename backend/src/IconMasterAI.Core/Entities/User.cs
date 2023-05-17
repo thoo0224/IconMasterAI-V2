@@ -6,6 +6,7 @@ public sealed class User
     public required string UserName { get; set; }
     public required string Email { get; set; }
     public required string? AvatarUrl { get; set; }
+    public required int Credits { get; set; }
 
     public static User Create(
         string userName,
@@ -18,7 +19,8 @@ public sealed class User
             Id = id ?? Guid.NewGuid().ToString(),
             AvatarUrl = avatarUrl,
             UserName = userName,
-            Email = email
+            Email = email,
+            Credits = 0
         };
     }
 }

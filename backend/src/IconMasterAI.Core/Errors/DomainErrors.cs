@@ -34,7 +34,18 @@ public static class DomainErrors
     public static class Generator
     {
         public static readonly Error SomethingWentWrong = new(
-            "Generator.SomethingWentWrong",
+            "Generator.Unauthorized",
             "Something went wrong.");
+
+        public static readonly Error NotEnoughCredits = new(
+            "Generator.NotEnoughCredits",
+            "You don't have enough credits for this action.");
+    }
+
+    public static class Global
+    {
+        public static readonly Error Unauthorized = new(
+            "Global.Unauthorized",
+            "Unauthorized.");
     }
 }

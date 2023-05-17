@@ -78,6 +78,38 @@ internal sealed class UserRepository : IUserRepository
             .FirstOrDefaultAsync().ConfigureAwait(false) == null;
     }
 
+    public async Task<bool> HasEnoughCreditsAsync(User user, int credits, CancellationToken ct = default)
+    {
+        var result = await _userManager.Users
+            .Where(u => u.Id.Equals(user.Id))
+            .FirstOrDefaultAsync(cancellationToken: ct).ConfigureAwait(false);
+
+        if (result == null)
+        {
+            return false;
+        }
+
+        return result.Credits >= credits;
+    }
+
+    public async Task RemoveCreditsAsync(User user, int credits, CancellationToken ct = default)
+    {
+        var dbUser = await _userManager.Users
+            .FirstOrDefaultAsync(u => u.Id.Equals(user.Id), cancellationToken: ct)
+            .ConfigureAwait(false);
+
+        if (dbUser == null)
+        {
+            return;
+        }
+
+        dbUser.Credits -= credits;
+        if (dbUser.Credits <= 0)
+        {
+            dbUser.Credits = 0;
+        }
+    }
+
     private async Task<ApplicationUser?> FindUserAsync(Expression<Func<ApplicationUser, bool>> predicate)
     {
         return await _userManager.Users

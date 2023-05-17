@@ -32,7 +32,7 @@ public class MappingServiceTests
         {
             UserName = user.UserName,
             Email = user.UserName,
-            AvatarUrl = user.UserName,
+            AvatarUrl = user.UserName
         };
 
         var service = new MappingService(

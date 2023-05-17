@@ -19,6 +19,7 @@ public class GeneratorController : ApiController
     [HttpPost, Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<IActionResult> GenerateAsync([FromForm] GenerateIconCommand command, CancellationToken ct)
     {
+        var user = await ResolveUserAsync().ConfigureAwait(false);
         var result = await Sender.Send(command, ct).ConfigureAwait(false);
         if (result.IsFailure)
         {

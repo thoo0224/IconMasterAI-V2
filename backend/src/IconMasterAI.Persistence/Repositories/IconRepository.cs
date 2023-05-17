@@ -8,7 +8,6 @@ internal sealed class IconRepository : IIconRepository
 {
     private readonly IFileStorageService _fileStorageService;
     private readonly ApplicationDbContext _dbContext;
-    private readonly IUnitOfWork _unitOfWork;
 
     public IconRepository(
         IFileStorageService fileStorageService, 
@@ -17,14 +16,12 @@ internal sealed class IconRepository : IIconRepository
     {
         _fileStorageService = fileStorageService;
         _dbContext = dbContext;
-        _unitOfWork = unitOfWork;
     }
 
     public async Task<Icon[]> CreateManyAsync(string rawPrompt, string finalPrompt, string[] images, CancellationToken ct = default)
     {
         var tasks = images.Select(image => CreateAsync(rawPrompt, finalPrompt, image, ct));
-        var icons = await Task.WhenAll(tasks);
-        await _unitOfWork.SaveChangedAsync(ct);
+        var icons = await Task.WhenAll(tasks).ConfigureAwait(false);
 
         return icons;
     }

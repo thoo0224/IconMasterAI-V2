@@ -13,11 +13,12 @@ export class GeneratorService {
     private httpClient: HttpClient
   ) { }
 
-  generate(prompt: string, color: string, style: string) {
+  generate(prompt: string, color: string, style: string, numImages: number = 1) {
     const body = httpParamsOf({
       prompt: prompt,
       style: style,
-      color: color
+      color: color,
+      numImages: numImages
     });
 
     return this.httpClient.post<GeneratorResponse>(`${environment.backendUrl}/api/generate`, body);

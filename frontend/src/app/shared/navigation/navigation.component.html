@@ -44,8 +44,7 @@
             <!-- Profile Picture and Login Button -->
             <ng-container *ngIf="user()">
                 <div>
-                    <!-- <span class="font-bold text-sm">¤ {{user.credits}}</span> -->
-                    <span class="font-bold text-sm">¤ 0</span>
+                    <span class="font-bold text-sm">¤ {{user().credits}}</span>
                 </div>
 
                 <div class="relative ml-3">

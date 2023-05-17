@@ -7,6 +7,7 @@ import { ProblemDetails } from 'src/app/core/interfaces/responses';
 import { GeneratorService } from 'src/app/core/services/app/generator.service';
 import { ErrorModalService } from 'src/app/core/services/error-modal.service';
 import { LoadingOverlayService } from 'src/app/core/services/loading-overlay.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-generator',
@@ -52,14 +53,21 @@ export class GeneratorComponent {
   constructor(
     private loadingOverlayService: LoadingOverlayService,
     private errorModalService: ErrorModalService,
-    private generatorService: GeneratorService
+    private generatorService: GeneratorService,
+    private userService: UserService
   ) { }
 
   generate() {
-    this.loadingOverlayService.load(this.generatorService.generate(this.prompt, this.selectedPrimaryColor, this.selectedStyle.name)
-      .pipe(
+    this.loadingOverlayService.load(
+      this.generatorService.generate(
+        this.prompt,
+        this.selectedPrimaryColor,
+        this.selectedStyle.name,
+        this.numImages
+      ).pipe(
         tap(res => {
           this.resultIcons = res.icons;
+          this.userService.removeCredits(this.numImages);
         }),
         catchError(err => {
           const error: HttpErrorResponse = err;

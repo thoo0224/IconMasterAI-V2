@@ -1,6 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 using IconMasterAI.Application;
+using IconMasterAI.Core.Services.Security;
 using IconMasterAI.Infrastructure;
 using IconMasterAI.Middlewares;
 using IconMasterAI.Persistence;
@@ -57,6 +58,7 @@ public sealed class Startup
             });
         });
 
+        services.AddHttpContextAccessor();
         services.AddHttpClient();
         services.AddControllers()
             .AddJsonOptions(options =>

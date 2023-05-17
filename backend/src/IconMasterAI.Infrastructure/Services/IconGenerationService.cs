@@ -1,4 +1,5 @@
-﻿using IconMasterAI.Core.Models.Inputs;
+﻿using IconMasterAI.Core.Entities;
+using IconMasterAI.Core.Models.Inputs;
 using IconMasterAI.Core.Models.Results;
 using IconMasterAI.Core.Repositories;
 using IconMasterAI.Core.Services;
@@ -9,18 +10,25 @@ namespace IconMasterAI.Infrastructure.Services;
 internal sealed class IconGenerationService : IIconGenerationService
 {
     private readonly IImageGenerationService _imageGenerationService;
+    private readonly IUserRepository _userRepository;
     private readonly IIconRepository _iconRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public IconGenerationService(
         IImageGenerationService imageGenerationService, 
-        IIconRepository iconRepository)
+        IUserRepository userRepository, 
+        IIconRepository iconRepository, 
+        IUnitOfWork unitOfWork)
     {
         _imageGenerationService = imageGenerationService;
+        _userRepository = userRepository;
         _iconRepository = iconRepository;
+        _unitOfWork = unitOfWork;
     }
 
     // TODO: Prompt Enhancer, IPromptBuilderService, Style classes, Proper error handling
     public async Task<IconGenerationResult> GenerateIconAsync(
+        User user,
         IconGenerationInput body,
         CancellationToken ct = default)
     {
@@ -35,6 +43,9 @@ internal sealed class IconGenerationService : IIconGenerationService
             originalPrompt,
             finalPrompt,
             generationResult.Images, ct).ConfigureAwait(false);
+
+        await _userRepository.RemoveCreditsAsync(user, body.NumImages, ct).ConfigureAwait(false);
+        await _unitOfWork.SaveChangedAsync(ct).ConfigureAwait(false);
 
         var result = new IconGenerationResult(icons);
         return result;

@@ -1,14 +1,11 @@
-﻿using System.Security.Claims;
-
-using IconMasterAI.Core.Entities;
-using IconMasterAI.Core.Repositories;
+﻿using IconMasterAI.Core.Entities;
 using IconMasterAI.Core.Results.Validation;
+using IconMasterAI.Core.Services.Security;
 using IconMasterAI.Core.Shared;
 
 using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace IconMasterAI.Abstractions;
 
@@ -52,17 +49,11 @@ public abstract class ApiController : ControllerBase
             Extensions = { { nameof(errors), errors } }
         };
 
+    // TODO: Caching
     public async Task<User?> ResolveUserAsync()
     {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        if (userId == null)
-        {
-            return null;
-        }
-
-        var userRepository = HttpContext.RequestServices.GetRequiredService<IUserRepository>();
-        var user = await userRepository.FindUserByIdAsync(userId)
-            .ConfigureAwait(false);
+        var accessorService = HttpContext.RequestServices.GetRequiredService<IUserAccessorService>();
+        var user = await accessorService.GetUserAsync().ConfigureAwait(false);
 
         return user;
     }

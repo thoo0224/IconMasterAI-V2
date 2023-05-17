@@ -1,4 +1,5 @@
 ﻿using System.Text;
+
 using IconMasterAI.Core.Services;
 using IconMasterAI.Core.Services.Icon;
 using IconMasterAI.Core.Services.Security;
@@ -52,6 +53,7 @@ public static class DependencyInjection
 
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
+        services.AddScoped<IUserAccessorService, UserAccessorService>();
 
         services.AddScoped<IImageGenerationService, OpenAIImageGenerationService>();
         services.AddScoped<IIconGenerationService, IconGenerationService>();
