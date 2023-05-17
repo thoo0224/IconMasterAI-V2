@@ -14,7 +14,6 @@ export class InitializerService {
   isBackendOffline: WritableSignal<boolean> = signal(false);
 
   constructor(
-    private loadingOverlayService: LoadingOverlayService,
     private tokenService: TokenService,
     private userService: UserService
   ) { }
@@ -38,7 +37,7 @@ export class InitializerService {
             this.isBackendOffline.set(true);
             localStorage.setItem('isBackendOffline', '1');
           }
-          ;
+
           return EMPTY;
         }),
         finalize(() => {
